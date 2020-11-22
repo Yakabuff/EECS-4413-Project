@@ -1,6 +1,8 @@
 package ctrl;
 
 import java.io.IOException;
+
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,14 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class BookStore
  */
-@WebServlet("/BookStore")
-public class BookStore extends HttpServlet {
+@WebServlet("/Home")
+public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String MAIN_URL = "/main.jspx";
+	
+	public void init(ServletConfig config) throws ServletException {
+		
+	}
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookStore() {
+    public Start() {
         super();
         // TODO Auto-generated constructor stub
     }
