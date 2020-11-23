@@ -7,7 +7,14 @@ public class BookBean {
   private int  price;
   private String category;
   
- public String getBid() {
+ public BookBean(String bid, String title, String author, int price, String category) {
+	this.bid = bid;
+	this.title = title;
+	this.author = author;
+	this.price = price;
+	this.category = category;
+}
+public String getBid() {
 	return bid;
 }
 public void setBid(String bid) {
