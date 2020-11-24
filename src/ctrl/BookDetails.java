@@ -15,15 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import bean.BookBean;
 import model.SIS;
 
-
 /**
- * Servlet implementation class BookStore
+ * Servlet implementation class BookDetails
  */
-@WebServlet("/Start")
-public class Start extends HttpServlet {
+@WebServlet("/BookDetails")
+public class BookDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String HOME_URL = "/Home.jspx";
-
+	private static final String BOOK_DETAILS_URL = "/BookDetails.jspx";
+	
 	SIS model;
 	
 	public void init(ServletConfig config) throws ServletException {
@@ -38,11 +37,12 @@ public class Start extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-       
+      
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Start() {
+    public BookDetails() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -51,35 +51,21 @@ public class Start extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		List<BookBean>results = new ArrayList<BookBean>();
+		List<BookBean>results = new ArrayList<BookBean>(); 
 		
 		ServletContext context = getServletContext();
 		model = (SIS) context.getAttribute("model");
 		
-		String category = request.getParameter("categories");
-		String title = request.getParameter("titles");
-		String review = request.getParameter("review");
-		if(category != null) {
-			
-			System.out.println(category);
-			results =model.retrieveFromBookCategory(category);
+		String bid = request.getParameter("bookdetails");
+		if(bid != null) {
+			results =model.retrieveFromBookID(bid);
 			request.setAttribute("RESULTS", results);
 			request.setAttribute("BOOK_NUM", results.size());
+		//add ratings
 			
-		}else if(title != null) {
-			
-			System.out.println(title);
-			results =model.retrieveFromBookTitle(title);
-			request.setAttribute("RESULTS", results);
-			request.setAttribute("BOOK_NUM", results.size());
-
 		}
 		
-		
-		request.getRequestDispatcher(HOME_URL).forward(request, response);
-		
-		
+		request.getRequestDispatcher(BOOK_DETAILS_URL).forward(request, response);
 	}
 
 	/**

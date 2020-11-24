@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ShoppingCart
+ * Servlet implementation class Review
  */
-@WebServlet("/ShoppingCart")
-public class ShoppingCart extends HttpServlet {
+@WebServlet("/Review")
+public class Review extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final String REVIEW_URL = "/Review.jspx";   
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShoppingCart() {
+    public Review() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,7 @@ public class ShoppingCart extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher(REVIEW_URL).forward(request, response);
 	}
 
 	/**

@@ -14,6 +14,14 @@ public class BookBean {
 	this.price = price;
 	this.category = category;
 }
+ 
+ public BookBean(String bid, String title,  int price, String category) {
+	this.bid = bid;
+	this.title = title;
+
+	this.price = price;
+	this.category = category;
+}
 public String getBid() {
 	return bid;
 }

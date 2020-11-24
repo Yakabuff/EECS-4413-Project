@@ -10,8 +10,13 @@ public class test {
 
 		BookDAO bd = new BookDAO();
 		
-		List<BookBean> list = bd.searchByTitle("Little Prince");
+//		List<BookBean> list = bd.searchByTitle("Little Prince");
+//		
+//		System.out.println(list.get(0).getCategory());
 		
-		System.out.println(list.get(0).getBid());
+		
+		List<BookBean> list = bd.searchByBID("002");
+
+
 	}
 }
