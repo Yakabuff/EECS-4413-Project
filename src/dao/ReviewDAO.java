@@ -44,9 +44,9 @@ public class ReviewDAO {
 			p = con.prepareStatement(query);
 			p.setString(1, "%"+bid+"%");
 			ResultSet rs = p.executeQuery();
-			ReviewBean rb = new ReviewBean();
+			
 			while(rs.next()) {
-				
+				ReviewBean rb = new ReviewBean();
 				int rating= rs.getInt("rating");
 				String name= rs.getString("name");
 				rb.setName(name);

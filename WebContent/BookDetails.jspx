@@ -54,7 +54,7 @@ table, th, td {
 			<c:forEach items="${REVIEWS}" var="key">
 			<TR>
 			<TD><c:out value="${key.name}"/></TD>
-			<TD><c:out value="${key.rating}"/></TD>
+			<TD><c:out value="${key.rating}/5"/></TD>
 
 			</TR>
 			</c:forEach>
