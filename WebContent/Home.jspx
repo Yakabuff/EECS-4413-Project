@@ -20,7 +20,7 @@ table, th, td {
 <body>
 <h1>BOOK STORE</h1>
 <br />
-<FORM action="ShoppingCart" method = "GET"><button type = "submit" name = "shoppingcart"> Shopping Cart </button></FORM>
+<FORM action="ShoppingCart" method = "POST"><button type = "submit" name = "shoppingcart"> Shopping Cart </button></FORM>
 <br />
 <FORM action="Start" method = "GET">
 <FIELDSET>

@@ -18,9 +18,11 @@
 <FIELDSET>
 <legend>Add review </legend>
 
-<label for='review'>Find by categories</label><br/>
-<input id = "review" type = "number" min="1" max="5" name = "review"/>
-<button type = "submit" name = "submit_review" value = "true"> Submit </button>
+<label for='review'>Insert rating (1-5)</label><br/>
+<input id = "rating" type = "number" min="1" max="5" name = "rating"/><br/>
+<label for='reviewer'>Enter name</label><br/>
+<input id = "reviewer" type = "text"  name = "reviewer"/><br/>
+<button type = "submit" name = "submit_review" value = "${param.review}"> Submit </button>
 
 </FIELDSET>
 </FORM>

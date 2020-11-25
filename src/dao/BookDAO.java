@@ -16,7 +16,7 @@ public class BookDAO {
 	Connection con;
 
 	public BookDAO() {
-		con = DAOConnect.getConnection();
+//		con = DAOConnect.getConnection();
 	}
 	
 	public List<BookBean> getByCategory(String c) {
@@ -117,12 +117,13 @@ public class BookDAO {
 		
 	}
 	
-	public List<BookBean> searchByBID(String id){
+	public BookBean searchByBID(String id){
 		con = DAOConnect.getConnection();
 		Statement stmt;
-		List<BookBean> books = null;
+		BookBean book = null;
+
 		try {
-			books = new ArrayList();
+
 
 			String query = "select * from Book where bid like ?";
 			PreparedStatement p = con.prepareStatement(query);
@@ -138,7 +139,7 @@ public class BookDAO {
 			String category = rs.getString("category");
 //			BookBean bean = new BookBean(bid, bookTitle, author, price, category);
 			BookBean bean = new BookBean(bid, bookTitle, price, category);
-			books.add(bean);
+			book= bean;
 //			System.out.println("\t" + bid+ ",\t" + bookTitle+ "\t " + price + "\t " + author + "\t " + category );
 			System.out.println("\t" + bid+ ",\t" + bookTitle+ "\t " + price + "\t "  + category );
 			
@@ -150,7 +151,7 @@ public class BookDAO {
 		}
 
 		
-		return books;
+		return book;
 		
 	}
 }

@@ -1,6 +1,8 @@
 package ctrl;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -9,19 +11,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import bean.CartBean;
+import bean.CartBookBean;
 import model.SIS;
 
 /**
- * Servlet implementation class Review
+ * Servlet implementation class RemoveFromCart
  */
-@WebServlet("/Review")
-public class Review extends HttpServlet {
+@WebServlet("/RemoveFromCart")
+public class RemoveFromCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String REVIEW_URL = "/Review.jspx";   
-	
-	
 	SIS model;
+	private static final String SHOPPING_CART = "/ShoppingCart.jspx";
+	private static final String HOME_URL = "/Home.jspx";
+	private static final String SHOPPING_CART_URL = "/ShoppingCart.jspx";
 	
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -39,7 +44,7 @@ public class Review extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Review() {
+    public RemoveFromCart() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,21 +53,29 @@ public class Review extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		ServletContext context = getServletContext();
 		model = (SIS) context.getAttribute("model");
 
-		String bid = request.getParameter("submit_review");
-
-		String name = request.getParameter("reviewer");
-		String rating = request.getParameter("rating"); 
-		if(request.getParameter("submit_review") != null) {
-			model.addReview(name, bid, Integer.parseInt(rating));
+		HttpSession session=request.getSession();
+		System.out.println("removing ");
+		System.out.println(request.getParameter("remove"));
+		if(request.getParameter("remove") != null) {
 			
+			List<CartBookBean> cbb_in_cart = new ArrayList();
+			CartBean cart = (CartBean) session.getAttribute("CART"); 
+			String quantity = request.getParameter("quantity");
+			String bid = request.getParameter("remove");
+			
+			cart.removeFromCart(bid);
+			for(CartBookBean a : cart.getCBBInCart()) {
+				cbb_in_cart.add(a);
+			}
+			session.setAttribute("BOOKS_IN_CART", cbb_in_cart);
+			session.setAttribute("CART_SIZE", cart.numBooks());
+			
+			System.out.println("removing "+bid);
+			request.getRequestDispatcher(SHOPPING_CART_URL).forward(request, response);
 		}
-		
-		request.getRequestDispatcher(REVIEW_URL).forward(request, response);
-
 	}
 
 	/**

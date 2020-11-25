@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Insert title here</title>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+<h1> Shopping cart</h1>
+
+<br />
+<form action="/EECS4413_Project">
+    <input type="submit" value="Home" />
+</form>
+<br />
+
+<c:choose>
+	<c:when test="${CART_SIZE > 0}">
+	<TABLE>
+		<TR>
+			<TD>BID </TD>
+			<TD>Title </TD>
+			<TD>Price </TD>
+			<TD>Category </TD>
+		</TR>
+	
+		<c:forEach items="${BOOKS_IN_CART}" var="key">
+			<TR>
+			<TD><c:out value="${key.book.bid}"/></TD>
+			<TD><c:out value="${key.book.title}"/></TD>
+			<TD><c:out value="${key.book.price}"/></TD>
+			<TD><c:out value="${key.book.category}"/></TD>
+			<TD><FORM action="RemoveFromCart" method = "GET"><button type = "submit" name = "remove" value = "${key.book.bid}"> Remove </button></FORM></TD>
+			
+			
+			<FORM action="UpdateQuantity" method = "GET">
+			<TD><input id = "quantity" type = "number"  name = "quantity" value = "${key.quantity}"/></TD>
+			<TD><button type = "submit" name = "bid" value = "${key.book.bid}"> Update Quantity </button></TD>
+			
+			</FORM>
+			</TR>
+		</c:forEach>
+	
+	</TABLE>
+	<FORM action="Payment" method = "POST"><button type = "submit" name = "pay" value = "true"> Payment </button></FORM>
+	</c:when>
+	</c:choose>
+
+
+
+
+
+
+</body>
+</html>
+</jsp:root>

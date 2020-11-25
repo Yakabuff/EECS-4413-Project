@@ -18,7 +18,7 @@ table, th, td {
 </style>
 </head>
 <body>
-
+<h1> Book Info </h1>
 <c:choose>
 	<c:when test="${BOOK_NUM > 0}">
 	<TABLE>
@@ -28,14 +28,36 @@ table, th, td {
 			<TD>Price </TD>
 			<TD>Category</TD>
 		</TR>
-		<c:forEach items="${RESULTS}" var="key">
+		
 			<TR>
-			<TD><c:out value="${key.bid}"/></TD>
-			<TD><c:out value="${key.title}"/></TD>
-			<TD><c:out value="${key.price}"/></TD>
-			<TD><c:out value="${key.category}"/></TD>
+			<TD><c:out value="${RESULTS.bid}"/></TD>
+			<TD><c:out value="${RESULTS.title}"/></TD>
+			<TD><c:out value="${RESULTS.price}"/></TD>
+			<TD><c:out value="${RESULTS.category}"/></TD>
 			</TR>
-		</c:forEach>
+		
+
+	</TABLE>
+	</c:when>
+	</c:choose>
+
+<h1>Reviews</h1>
+
+<c:choose>
+	<c:when test="${REVIEW_NUM > 0}">
+	<TABLE>
+		<TR>
+			<TD>Name </TD>
+			<TD>Rating </TD>
+
+		</TR>
+			<c:forEach items="${REVIEWS}" var="key">
+			<TR>
+			<TD><c:out value="${key.name}"/></TD>
+			<TD><c:out value="${key.rating}"/></TD>
+
+			</TR>
+			</c:forEach>
 	</TABLE>
 	</c:when>
 	</c:choose>

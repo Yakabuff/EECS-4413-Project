@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.BookBean;
+import bean.ReviewBean;
 import model.SIS;
 
 /**
@@ -51,7 +52,7 @@ public class BookDetails extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<BookBean>results = new ArrayList<BookBean>(); 
+		BookBean results;
 		
 		ServletContext context = getServletContext();
 		model = (SIS) context.getAttribute("model");
@@ -60,9 +61,12 @@ public class BookDetails extends HttpServlet {
 		if(bid != null) {
 			results =model.retrieveFromBookID(bid);
 			request.setAttribute("RESULTS", results);
-			request.setAttribute("BOOK_NUM", results.size());
+			request.setAttribute("BOOK_NUM", 1);
 		//add ratings
-			
+			List<ReviewBean> ratings = new ArrayList();
+			ratings = model.getReview(bid);
+			request.setAttribute("REVIEWS", ratings);
+			request.setAttribute("REVIEW_NUM", ratings.size());
 		}
 		
 		request.getRequestDispatcher(BOOK_DETAILS_URL).forward(request, response);
