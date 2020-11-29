@@ -3,6 +3,15 @@ package bean;
 public class UserBean {
 	private String firstname, lastname, username, email, pass , role;
 	private AddressBean addrbean;
+	
+	public UserBean(String firstName, String lastName, String email, String password, AddressBean addrbean) {
+		this.firstname = firstName;
+		this.lastname = lastName;
+		this.email = email;
+		this.pass = password;
+		this.addrbean = addrbean;
+	}
+	
 	public String getFirstname() {
 		return firstname;
 	}

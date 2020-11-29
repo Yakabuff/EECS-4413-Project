@@ -18,7 +18,7 @@ import model.SIS;
 @WebServlet("/Payment")
 public class Payment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String SIGNIN_URL = "/SignIn.jspx";
+	private static final String SIGNIN_URL = "/UserHandler?Payment=True";
 	private static final String PAYMENT_URL = "/Payment.jspx";
 	SIS model;
     /**

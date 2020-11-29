@@ -2,6 +2,15 @@ package bean;
 
 public class AddressBean {
 	private String street, province, country, zip, phone, city;
+	
+	public AddressBean (String street, String province, String country, String zip, String phone, String city) {
+		this.street = street;
+		this.province = province;
+		this.country = country;
+		this.zip = zip;
+		this.phone = phone;
+		this.city = city;
+	}
 	public String getStreet() {
 		return street;
 	}
