@@ -24,6 +24,11 @@ table, th, td {
 <form action="/EECS4413_Project">
     <input type="submit" value="Home" />
 </form>
+
+<form action="/SignIn">
+    <input type="submit" value="Sign In" />
+</form>
+
 <br />
 
 <c:choose>

@@ -21,6 +21,9 @@ table, th, td {
 <h1>BOOK STORE</h1>
 <br />
 <FORM action="ShoppingCart" method = "POST"><button type = "submit" name = "shoppingcart"> Shopping Cart </button></FORM>
+<form action="/EECS4413_Project/UserHandler">
+    <input type="submit" value="Sign In" />
+</form>
 <br />
 <FORM action="Start" method = "GET">
 <FIELDSET>
