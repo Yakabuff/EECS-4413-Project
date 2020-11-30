@@ -1,7 +1,27 @@
 package bean;
 
 public class UserBean {
-	private String firstname, lastname, username, email, pass, street, city, postal, phone,role;
+	private String firstname, lastname, username, email, pass , role;
+	private int UID;
+	private AddressBean addrbean;
+	
+	public UserBean(String firstName, String lastName, String email, String password, AddressBean addrbean, int UID) {
+		this.firstname = firstName;
+		this.lastname = lastName;
+		this.email = email;
+		this.pass = password;
+		this.addrbean = addrbean;
+		this.UID = UID;
+	}
+	
+	public UserBean(String fname, String lname, String email, String password,
+			AddressBean addr) {
+		this.firstname = fname;
+		this.lastname = lname;
+		this.email = email;
+		this.pass = password;
+		this.addrbean = addr;
+	}
 
 	public String getFirstname() {
 		return firstname;
@@ -42,43 +62,23 @@ public class UserBean {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getPostal() {
-		return postal;
-	}
-
-	public void setPostal(String postal) {
-		this.postal = postal;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 	public String getRole() {
 		return role;
 	}
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public AddressBean getAddressBean() {
+		return addrbean;
+	}
+	public void setAddressBean(AddressBean addrbean) {
+		this.addrbean = addrbean;
+	}
+	public int getUID() {
+		return UID;
+	}
+	public void setUID(int UID) {
+		this.UID = UID;
 	}
 }

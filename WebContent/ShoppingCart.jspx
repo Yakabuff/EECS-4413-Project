@@ -24,6 +24,18 @@ table, th, td {
 <form action="/EECS4413_Project">
     <input type="submit" value="Home" />
 </form>
+
+<c:if test="${empty sessionScope['loggedIn']}">
+<form action="/EECS4413_Project/UserHandler">
+    <input type="submit" value="Sign In" />
+</form>
+</c:if>
+<c:if test="${not empty sessionScope['loggedIn']}">
+<form action="/EECS4413_Project/UserHandler">
+    <input type="submit" value="Log Out" />
+</form>
+</c:if>
+
 <br />
 
 <c:choose>

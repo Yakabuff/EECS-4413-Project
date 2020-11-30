@@ -21,6 +21,19 @@ table, th, td {
 <h1>BOOK STORE</h1>
 <br />
 <FORM action="ShoppingCart" method = "POST"><button type = "submit" name = "shoppingcart"> Shopping Cart </button></FORM>
+<c:if test="${empty sessionScope['loggedIn']}">
+<form action="/EECS4413_Project/UserHandler">
+    <input type="submit" value="Sign In" />
+</form>
+</c:if>
+<c:if test="${not empty sessionScope['loggedIn']}">
+<form action="/EECS4413_Project/UserHandler" method="POST">
+    <button type = "submit" name = "logout" value = "true"> Log Out </button>
+</form>
+<form action="/EECS4413_Project/Profile.jspx">
+    <input type="submit" value="Profile" />
+</form>
+</c:if>
 <br />
 <FORM action="Start" method = "GET">
 <FIELDSET>
