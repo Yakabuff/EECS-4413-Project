@@ -11,20 +11,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import bean.BookBean;
+import bean.CartBean;
+import bean.CartBookBean;
 import model.SIS;
 
-
 /**
- * Servlet implementation class BookStore
+ * Servlet implementation class RemoveFromCart
  */
-@WebServlet("/Start")
-public class Start extends HttpServlet {
+@WebServlet("/RemoveFromCart")
+public class RemoveFromCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String HOME_URL = "/Home.jspx";
-
 	SIS model;
+	private static final String SHOPPING_CART = "/ShoppingCart.jspx";
+	private static final String HOME_URL = "/Home.jspx";
+	private static final String SHOPPING_CART_URL = "/ShoppingCart.jspx";
 	
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -38,11 +40,11 @@ public class Start extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-       
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Start() {
+    public RemoveFromCart() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -51,35 +53,29 @@ public class Start extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		List<BookBean>results = new ArrayList<BookBean>();
-		
 		ServletContext context = getServletContext();
 		model = (SIS) context.getAttribute("model");
-		
-		String category = request.getParameter("categories");
-		String title = request.getParameter("titles");
-		String review = request.getParameter("review");
-		if(category != null) {
-			
-			System.out.println(category);
-			results =model.retrieveFromBookCategory(category);
-			request.setAttribute("RESULTS", results);
-			request.setAttribute("BOOK_NUM", results.size());
-			
-		}else if(title != null) {
-			
-			System.out.println(title);
-			results =model.retrieveFromBookTitle(title);
-			request.setAttribute("RESULTS", results);
-			request.setAttribute("BOOK_NUM", results.size());
 
+		HttpSession session=request.getSession();
+		System.out.println("removing ");
+		System.out.println(request.getParameter("remove"));
+		if(request.getParameter("remove") != null) {
+			
+			List<CartBookBean> cbb_in_cart = new ArrayList();
+			CartBean cart = (CartBean) session.getAttribute("CART"); 
+			String quantity = request.getParameter("quantity");
+			String bid = request.getParameter("remove");
+			
+			cart.removeFromCart(bid);
+			for(CartBookBean a : cart.getCBBInCart()) {
+				cbb_in_cart.add(a);
+			}
+			session.setAttribute("BOOKS_IN_CART", cbb_in_cart);
+			session.setAttribute("CART_SIZE", cart.numBooks());
+			
+			System.out.println("removing "+bid);
+			request.getRequestDispatcher(SHOPPING_CART_URL).forward(request, response);
 		}
-		
-		
-		request.getRequestDispatcher(HOME_URL).forward(request, response);
-		
-		
 	}
 
 	/**

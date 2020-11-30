@@ -16,17 +16,17 @@ public class BookDAO {
 	Connection con;
 
 	public BookDAO() {
-		con = DAOConnect.getConnection();
+//		con = DAOConnect.getConnection();
 	}
 	
 	public List<BookBean> getByCategory(String c) {
-		
+		con = DAOConnect.getConnection();
 		List<BookBean> books = new ArrayList<BookBean>();
 
 		try {
 			String query = "select * from Book where category like ?";
 			PreparedStatement p = con.prepareStatement(query);
-			p.setString(1, c);
+			p.setString(1, "%"+c+"%");
 			
 			ResultSet rs = p.executeQuery();
 			
@@ -34,10 +34,13 @@ public class BookDAO {
 				String bid= rs.getString("bid");
 				String bookTitle = rs.getString("title");
 				int price = rs.getInt("price");
-				String author = rs.getString("author");
+//				String author = rs.getString("author");
 				String category = rs.getString("category");
-				BookBean bean = new BookBean(bid, bookTitle, author, price, category);
+				System.out.println("category is" + category);
+//				BookBean bean = new BookBean(bid, bookTitle, author, price, category);
+				BookBean bean = new BookBean(bid, bookTitle, price, category);
 				books.add(bean);
+				System.out.println("\t" + bid+ ",\t" + bookTitle+ "\t " + price + "\t "  + category );
 			}//end while loop
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -51,6 +54,7 @@ public class BookDAO {
 	
 	
 	public List<BookBean> getAllBooks(){
+		con = DAOConnect.getConnection();
 		List<BookBean> books = new ArrayList<BookBean>();
 		Statement stmt;
 		try {
@@ -62,6 +66,7 @@ public class BookDAO {
 				int price = rs.getInt("price");
 				String author = rs.getString("author");
 				String category = rs.getString("category");
+				System.out.println("\t" + bid+ ",\t" + bookTitle+ "\t " + price + "\t "  + category );
 				BookBean bean = new BookBean(bid, bookTitle, author, price, category);
 				books.add(bean);
 			}//end while loop
@@ -76,7 +81,7 @@ public class BookDAO {
 	}
 	
 	public List<BookBean> searchByTitle(String title){
-		
+		con = DAOConnect.getConnection();
 		Statement stmt;
 		List<BookBean> books = null;
 		try {
@@ -92,13 +97,16 @@ public class BookDAO {
 			String bid= rs.getString("bid");
 			String bookTitle = rs.getString("title");
 			int price = rs.getInt("price");
-			String author = rs.getString("author");
+//			String author = rs.getString("author");
 			String category = rs.getString("category");
-			BookBean bean = new BookBean(bid, bookTitle, author, price, category);
+//			BookBean bean = new BookBean(bid, bookTitle, author, price, category);
+			BookBean bean = new BookBean(bid, bookTitle, price, category);
 			books.add(bean);
-			System.out.println("\t" + bid+ ",\t" + bookTitle+ "\t " + price + "\t " + author + "\t " + category );
-			con.close();
+//			System.out.println("\t" + bid+ ",\t" + bookTitle+ "\t " + price + "\t " + author + "\t " + category );
+			System.out.println("\t" + bid+ ",\t" + bookTitle+ "\t " + price + "\t "  + category );
+			
 			}//end while loop
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,6 +114,44 @@ public class BookDAO {
 
 		
 		return books;
+		
+	}
+	
+	public BookBean searchByBID(String id){
+		con = DAOConnect.getConnection();
+		Statement stmt;
+		BookBean book = null;
+
+		try {
+
+
+			String query = "select * from Book where bid like ?";
+			PreparedStatement p = con.prepareStatement(query);
+			p.setString(1, "%"+id+"%");
+			
+			ResultSet rs = p.executeQuery();
+			
+			while(rs.next()) {
+			String bid= rs.getString("bid");
+			String bookTitle = rs.getString("title");
+			int price = rs.getInt("price");
+//			String author = rs.getString("author");
+			String category = rs.getString("category");
+//			BookBean bean = new BookBean(bid, bookTitle, author, price, category);
+			BookBean bean = new BookBean(bid, bookTitle, price, category);
+			book= bean;
+//			System.out.println("\t" + bid+ ",\t" + bookTitle+ "\t " + price + "\t " + author + "\t " + category );
+			System.out.println("\t" + bid+ ",\t" + bookTitle+ "\t " + price + "\t "  + category );
+			
+			}//end while loop
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+		return book;
 		
 	}
 }
