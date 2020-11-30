@@ -2,7 +2,16 @@ package bean;
 
 public class AddressBean {
 	private String street, province, country, zip, phone, city;
-	
+	private int AID;
+	public AddressBean (String street, String province, String country, String zip, String phone, String city, int AID) {
+		this.street = street;
+		this.province = province;
+		this.country = country;
+		this.zip = zip;
+		this.phone = phone;
+		this.city = city;
+		this.AID = AID;
+	}
 	public AddressBean (String street, String province, String country, String zip, String phone, String city) {
 		this.street = street;
 		this.province = province;
@@ -55,5 +64,12 @@ public class AddressBean {
 
 	public void setProvince(String province) {
 		this.province = province;
+	}
+	public int getAID() {
+		return AID;
+	}
+
+	public void setAID(int AID) {
+		this.AID = AID;
 	}
 }

@@ -5,10 +5,12 @@ import java.util.List;
 
 import bean.BookBean;
 import bean.CartBean;
+import bean.CartBookBean;
 import bean.ReviewBean;
 import bean.UserBean;
 import bean.AddressBean;
 import dao.BookDAO;
+import dao.PaymentDAO;
 import dao.ReviewDAO;
 import dao.UserDAO;
 
@@ -17,6 +19,7 @@ public class SIS {
 	private BookDAO bd;
 	private ReviewDAO rd;
 	private UserDAO ud;
+	private PaymentDAO pd;
 	public SIS() {
 		
 	}
@@ -28,6 +31,7 @@ public class SIS {
 			instance.bd = new BookDAO();
 			instance.rd = new ReviewDAO();
 			instance.ud = new UserDAO();
+			instance.pd = new PaymentDAO();
 
 		}
 		return instance;
@@ -73,6 +77,11 @@ public class SIS {
 	}
 	public UserBean loginUser(String email, String password) throws SQLException {
 		return ud.loginUser(email, password);		
+	}
+
+
+	public Boolean processPayment(UserBean user, AddressBean addr, List<CartBookBean> cbb_in_cart) throws Exception {
+		return pd.processPayment(user, addr, cbb_in_cart);
 	}
 	
 

@@ -59,10 +59,6 @@ public class UserDAO {
 		
 	}
 	
-	public UserBean getUserDetails(String email, String pw) {
-		return null;
-		
-	}
 	
 	public UserBean loginUser(String email, String password) throws SQLException {
 		con = DAOConnect.getConnection();
@@ -75,6 +71,7 @@ public class UserDAO {
 		ResultSet r = p.executeQuery();
 
 		while (r.next()) {
+			int uid = r.getInt("id");
 			String fname = r.getString("fname");
 			String lname = r.getString("lname");
 			int id = r.getInt("daddressid");
@@ -83,9 +80,9 @@ public class UserDAO {
 			addrp.setInt(1, id);
 			ResultSet addr = addrp.executeQuery();
 			while (addr.next()) {
-				address = new AddressBean(addr.getString("street"), addr.getString("province"), addr.getString("country"), addr.getString("zip"), addr.getString("phone"), addr.getString("city"));
+				address = new AddressBean(addr.getString("street"), addr.getString("province"), addr.getString("country"), addr.getString("zip"), addr.getString("phone"), addr.getString("city"), addr.getInt("id"));
 			}
-			user = new UserBean(fname, lname, email, password, address);
+			user = new UserBean(fname, lname, email, password, address, uid);
 		}
 
 		r.close();
@@ -95,12 +92,21 @@ public class UserDAO {
 		return user;
 	}
 	
-	public int logoutUser(String email) {
-		return 0;
-	}
 	
-	public boolean checkUserExists(String email) {
-		return false;
+	public boolean checkUserExists(String email) throws SQLException {
+		con = DAOConnect.getConnection();
+		String checkUserExists = "select count(*) as count from user where email='" + email + "'";
+		PreparedStatement p = con.prepareStatement(checkUserExists);
+		ResultSet r = p.executeQuery();
+		int count = 0;
+		while (r.next()) {
+			count = r.getInt("count");
+		}
+		if (count == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }

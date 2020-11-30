@@ -2,9 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DAOConnect {
 
@@ -33,9 +33,17 @@ public class DAOConnect {
 			}
 		}
 		return connection;
-
+	}	
+	public static int getLastID (String table) throws SQLException {
+		Connection con = getConnection();
+		String query = "Select max(id) as LATEST_ID FROM " + table;
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet rs = p.executeQuery();
+		int last_id = 0;
+		while(rs.next()) {
+			last_id = rs.getInt("LATEST_ID");
+		}
+		return last_id;
 	}
-	
-	
 
 }

@@ -30,6 +30,9 @@ table, th, td {
 <form action="/EECS4413_Project/UserHandler" method="POST">
     <button type = "submit" name = "logout" value = "true"> Log Out </button>
 </form>
+<form action="/EECS4413_Project/Profile.jspx">
+    <input type="submit" value="Profile" />
+</form>
 </c:if>
 <br />
 <FORM action="Start" method = "GET">
