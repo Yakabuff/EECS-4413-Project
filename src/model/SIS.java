@@ -6,11 +6,13 @@ import java.util.List;
 import bean.BookBean;
 import bean.CartBean;
 import bean.CartBookBean;
+import bean.OrdersBean;
 import bean.ReviewBean;
 import bean.UserBean;
 import bean.AddressBean;
 import dao.BookDAO;
 import dao.PaymentDAO;
+import dao.PurchaseOrderDAO;
 import dao.ReviewDAO;
 import dao.UserDAO;
 
@@ -20,6 +22,7 @@ public class SIS {
 	private ReviewDAO rd;
 	private UserDAO ud;
 	private PaymentDAO pd;
+	private PurchaseOrderDAO po;
 	public SIS() {
 		
 	}
@@ -32,6 +35,7 @@ public class SIS {
 			instance.rd = new ReviewDAO();
 			instance.ud = new UserDAO();
 			instance.pd = new PaymentDAO();
+			instance.po = new PurchaseOrderDAO();
 
 		}
 		return instance;
@@ -84,5 +88,8 @@ public class SIS {
 		return pd.processPayment(user, addr, cbb_in_cart);
 	}
 	
+	public List<OrdersBean> getOrdersByBid (String bid){
+		return po.getPurchaseOrderByBid(bid);
+	}
 
 }
