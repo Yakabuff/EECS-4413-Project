@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import bean.BookBean;
+import bean.OrdersBean;
 import bean.ReviewBean;
 import model.SIS;
 
@@ -12,6 +13,7 @@ public class test {
 
 		BookDAO bd = new BookDAO();
 		ReviewDAO rd = new ReviewDAO();
+		PurchaseOrderDAO pod= new PurchaseOrderDAO();
 		SIS model = new SIS();
 //		List<BookBean> list = bd.searchByTitle("Little Prince");
 //		
@@ -26,12 +28,14 @@ public class test {
 		
 		
 //		rd.addReview(5, "jonathan", "b002");
-		List<ReviewBean> list = rd.getReviews("b001");
-		System.out.println(list.get(0).getName());
-		System.out.println(list.get(1).getName());
-		System.out.println(list.get(0).getRating());
-		System.out.println(list.get(1).getRating());
+//		List<ReviewBean> list = rd.getReviews("b001");
+//		System.out.println(list.get(0).getName());
+//		System.out.println(list.get(1).getName());
+//		System.out.println(list.get(0).getRating());
+//		System.out.println(list.get(1).getRating());
 
+//		pod.getRow(4);
+		List<OrdersBean> orders = pod.getPurchaseOrderByBid("b001");
 		
 
 	}

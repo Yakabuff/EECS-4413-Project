@@ -5,12 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
-      <dependencies>
-	<dependency>
-  <groupId>org.json</groupId>
-  <artifactId>json</artifactId>
-  <version>20180813</version>
-</dependency>
+<dependencies>
 
 <dependency>
     <groupId>com.sun.jersey</groupId>
@@ -18,16 +13,27 @@
     <version>1.19.4</version>
 </dependency>
 <dependency>
-    <groupId>javax.json</groupId>
-    <artifactId>javax.json-api</artifactId>
-    <version>1.1.4</version>
-</dependency>
-<dependency>
     <groupId>com.ibm.db2</groupId>
     <artifactId>jcc</artifactId>
     <version>11.5.0.0</version>
 </dependency>
+    <dependency>
+        <groupId>com.sun.jersey</groupId>
+        <artifactId>jersey-server</artifactId>
+        <version>1.8</version>
+    </dependency>
 
+    <dependency>
+        <groupId>com.sun.jersey</groupId>
+        <artifactId>jersey-json</artifactId>
+        <version>1.8</version>
+    </dependency>
+    
+        <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.8.5</version>
+    </dependency>
   </dependencies>
   
   <build>

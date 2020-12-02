@@ -54,6 +54,10 @@ public String getAuthor() {
 public void setAuthor(String author) {
 	this.author=author;
 }
-  
+
+@Override
+public String toString() {
+    return "BookBean [title=" + title + ", bid=" + bid + ", price=" + price +", category=" + category +", author=" + author +"]";
+}
   
 }

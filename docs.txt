@@ -1,0 +1,3 @@
+curl -X GET http://localhost:8080/EECS4413_Project/rest/catalog/book?bid=b001
+curl -X GET http://localhost:8080/EECS4413_Project/rest/orders/book?bid=b001
+
