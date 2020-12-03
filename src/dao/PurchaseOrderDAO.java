@@ -43,7 +43,7 @@ public class PurchaseOrderDAO {
 				
 				int price = r.getInt("price");
 				int poId = r.getInt("uid");
-				int quantity = getOrderQuantity(poId);
+				//int quantity = getOrderQuantity(poId);
 				int address = r.getInt("address");
 				String category = r.getString("category");
 				
@@ -74,39 +74,6 @@ public class PurchaseOrderDAO {
 		return orders;
 	}
 	
-	public void getRow(int row) {
-
-		con = DAOConnect.getConnection();
-//		String query2 = "select ROW_NUMBER() AS NUMBER"
-//				+ "A.street, A.province, A.country, A.zip, A.phone, A.city"
-//				+ "FROM Address A"
-//				+ "WHERE NUMBER = ?";
-//		String query2 = "select phone, street from Address where id = ?";
-		String query2 = "select id, phone, street from Address";
-		PreparedStatement p;
-		try {
-			p = con.prepareStatement(query2);
-//			p.setInt(1, row);
-			ResultSet r = p.executeQuery();
-			while (r.next()) {
-//				String street = r.getString("street");
-//				String city = r.getString("city");
-//				String zip = r.getString("zip");
-//				String province = r.getString("province");
-//				String country = r.getString("country");
-//				String phone = r.getString("phone");
-//				String rowe = r.getString("NUMBER");
-//				System.out.println("\t" + street+ ",\t" + city+ "\t " + zip + "\t "  + province + "\t"+rowe);
-				System.out.println(r.getString("id")+r.getString("phone") + r.getString("street"));
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
 	
 	public int getOrderQuantity(int poID) {
 		int quantity =0;
@@ -120,6 +87,9 @@ public class PurchaseOrderDAO {
 			if (r.next()) {
 				quantity = r.getInt(1);
 			}
+			p.close();
+			r.close();
+			con.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

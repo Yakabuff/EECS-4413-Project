@@ -16,7 +16,6 @@ public class PaymentDAO {
 	public Boolean processPayment(UserBean user, AddressBean addr,
 			List<CartBookBean> cbb_in_cart) throws SQLException {
 		// TODO Auto-generated method stub
-		System.out.println("GOT HERE");
 		con = DAOConnect.getConnection();
 		int addrID = addr.getAID();
 		if (addr.getAID() == 0) {
@@ -52,9 +51,11 @@ public class PaymentDAO {
 			}
 		}
 		if (hardCodeFail == "PROCESSED") {
+			con.close();
 			return true;
 		}
 		else {
+			con.close();
 			return false;
 		}
 	}

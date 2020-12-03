@@ -45,6 +45,7 @@ public class UserDAO {
 				addUser.setInt(5, latest_id);
 				addUser.setString(6, "CUSTOMER");
 				addUser.executeUpdate();
+				con.close();
 				return true;
 				}//end while loop
 			catch (SQLException e) {
@@ -55,6 +56,7 @@ public class UserDAO {
 		else {
 			throw new Exception("Cannot register, user already exists.");
 		}
+		con.close();
 		return false;
 		
 	}
@@ -102,6 +104,9 @@ public class UserDAO {
 		while (r.next()) {
 			count = r.getInt("count");
 		}
+		p.close();
+		r.close();
+		con.close();
 		if (count == 0) {
 			return false;
 		} else {

@@ -43,6 +43,7 @@ public class DAOConnect {
 		while(rs.next()) {
 			last_id = rs.getInt("LATEST_ID");
 		}
+		con.close();
 		return last_id;
 	}
 
