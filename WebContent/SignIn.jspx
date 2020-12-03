@@ -145,7 +145,7 @@ span.psw {
 
 <div id="signInModal" class="modal">
   
-  <form class="modal-content animate" action="/EECS4413_Project/UserHandler" method="post">
+  <form class="modal-content animate" action="${pageContext.request.contextPath}/UserHandler" method="post">
     <div class="container">
       <label for="email">Email</label>
       <input type="text" placeholder="Email" name="email" required="name"></input>
@@ -164,7 +164,7 @@ span.psw {
 
 <div id="signUpModal" class="modal">
   
-  <form class="modal-content animate" action="/EECS4413_Project/UserHandler" method="post">
+  <form class="modal-content animate" action="${pageContext.request.contextPath}/UserHandler" method="post">
     <div class="container">
       <label>Email</label> <input type="text" name="email" required="true" placeholder="Email"></input><br />
 		<label>Password</label> <input type="password" name="password" placeholder="Password"></input><br />

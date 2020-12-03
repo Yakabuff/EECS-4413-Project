@@ -22,7 +22,9 @@ body{
 </style>
 </head>
 <body>
-
+<form action="/Home.jspx">
+    <input type="submit" value="Home" class="btn btn-primary"/>
+</form>
 <h1>Add a review</h1>
 
 <FORM action="Review" method = "GET">

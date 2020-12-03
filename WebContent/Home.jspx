@@ -33,15 +33,15 @@ body{
 
 <FORM action="ShoppingCart" method = "POST"><button type = "submit" name = "shoppingcart" class="btn btn-primary"> Shopping Cart </button></FORM>
 <c:if test="${empty sessionScope['loggedIn']}">
-<form action="/EECS4413_Project/UserHandler">
+<form action="${pageContext.request.contextPath}/UserHandler">
     <input type="submit" value="Sign In" class="btn btn-primary"/>
 </form>
 </c:if>
 <c:if test="${not empty sessionScope['loggedIn']}">
-<form action="/EECS4413_Project/UserHandler" method="POST">
+<form action="${pageContext.request.contextPath}/UserHandler" method="POST">
     <button type = "submit" name = "logout" value = "true" class="btn btn-primary"> Log Out </button>
 </form>
-<form action="/EECS4413_Project/Profile.jspx">
+<form action="${pageContext.request.contextPath}/Profile.jspx">
     <input type="submit" value="Profile" class="btn btn-primary"/>
 </form>
 </c:if>

@@ -21,16 +21,16 @@
 <p> <c:out value= "${requestScope['rejectMsg']}"></c:out></p>
 </c:if>
 <br />
-<form action="/EECS4413_Project">
-    <input type="submit" value="Home" />
+<form action="/Home.jspx">
+    <input type="submit" value="Home" class="btn btn-primary"/>
 </form>
 <c:if test="${empty sessionScope['loggedIn']}">
-<form action="/EECS4413_Project/UserHandler">
+<form action="${pageContext.request.contextPath}/UserHandler">
     <input type="submit" value="Sign In" />
 </form>
 </c:if>
 <c:if test="${not empty sessionScope['loggedIn']}">
-<form action="/EECS4413_Project/UserHandler" method="POST">
+<form action="${pageContext.request.contextPath}/UserHandler" method="POST">
     <button type = "submit" name = "logout" value = "true"> Log Out </button>
 </form>
 </c:if>
@@ -38,7 +38,7 @@
 <c:if test="${empty requestScope['approveMsg']}">
 <h4>Enter Address Details</h4>
 
-<form action="/EECS4413_Project/Payment" method="POST">
+<form action="${pageContext.request.contextPath}/Payment" method="POST">
 <input type="radio" checked="checked" value="false" name="shipping_address"> I want to use my default address</input>
 <input type="radio" value="true" name="shipping_address"> I want to use a new address</input>
 

@@ -30,12 +30,12 @@ body{
 
 
 <br />
-<form action="/EECS4413_Project">
+<form action="/Home.jspx">
     <input type="submit" value="Home" class="btn btn-primary"/>
 </form>
 
 <c:if test="${empty sessionScope['loggedIn']}">
-<form action="/EECS4413_Project/UserHandler">
+<form action="${pageContext.request.contextPath}/UserHandler">
     <input type="submit" value="Sign In" class="btn btn-primary"/>
 </form>
 </c:if>
@@ -46,7 +46,7 @@ body{
 	<hr></hr>
 </div>
 <c:if test="${not empty sessionScope['loggedIn']}">
-<form action="/EECS4413_Project/UserHandler">
+<form action="${pageContext.request.contextPath}/UserHandler">
     <input type="submit" value="Log Out" class="btn btn-primary"/>
 </form>
 </c:if>
