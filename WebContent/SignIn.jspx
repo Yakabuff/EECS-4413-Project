@@ -136,7 +136,7 @@ span.psw {
 </head>
 <body>
 
-<h2>Modal Login Form</h2>
+<h2>Log In To Proceed:</h2>
 <c:if test="${not empty requestScope['outMsg']}">
 <p> <c:out value= "${requestScope['outMsg']}"></c:out></p>
 </c:if>
