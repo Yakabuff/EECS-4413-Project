@@ -136,7 +136,7 @@ span.psw {
 </head>
 <body>
 
-<h2>Log In To Proceed:</h2>
+<h2>Hey! Please Sign In or Sign Up.</h2>
 <c:if test="${not empty requestScope['outMsg']}">
 <p> <c:out value= "${requestScope['outMsg']}"></c:out></p>
 </c:if>
@@ -167,13 +167,13 @@ span.psw {
   <form class="modal-content animate" action="${pageContext.request.contextPath}/UserHandler" method="post">
     <div class="container">
       <label>Email</label> <input type="text" name="email" required="true" placeholder="Email"></input><br />
-		<label>Password</label> <input type="password" name="password" placeholder="Password"></input><br />
-		<label>First Name</label> <input type="text" name="fname" placeholder="First Name"></input><br />
-		<label>Last Name</label> <input type="text" name="lname"  placeholder="Last Name"></input><br />
-		<label>Street</label> <input type="text" name="street"  placeholder="Street"></input><br />
-		<label>City</label> <input type="text" name="city" placeholder="City"></input><br />
-		<label>Province</label> <input type="text" name="province" placeholder="Province"></input><br />
-		<label>Country</label> <select name="country">
+		<label>Password</label> <input type="password" name="password" required="true" placeholder="Password"></input><br />
+		<label>First Name</label> <input type="text" name="fname" required="true" placeholder="First Name"></input><br />
+		<label>Last Name</label> <input type="text" name="lname" required="true" placeholder="Last Name"></input><br />
+		<label>Street</label> <input type="text" name="street" required="true" placeholder="Street"></input><br />
+		<label>City</label> <input type="text" name="city" required="true" placeholder="City"></input><br />
+		<label>Province</label> <input type="text" name="province" required="true" placeholder="Province"></input><br />
+		<label>Country</label> <select name="country" required="true">
 			<option value="Afganistan">Afghanistan</option>
 			<option value="Albania">Albania</option>
 			<option value="Algeria">Algeria</option>
@@ -430,8 +430,8 @@ span.psw {
 			<option value="Zaire">Zaire</option>
 			<option value="Zambia">Zambia</option>
 			<option value="Zimbabwe">Zimbabwe</option>
-		</select><br /> <label>ZIP</label> <input type="text" name="zip"  class="w3-input w3-padding-16 w3-border" placeholder="ZIP"></input><br />
-		<label>Phone</label> <input type="number" name="phone" min="0000000000" max="9999999999" placeholder="Phone Number"></input><br /> 
+		</select><br /> <label>ZIP</label> <input type="text" name="zip"  class="w3-input w3-padding-16 w3-border" placeholder="ZIP" required="true"></input><br />
+		<label>Phone</label> <input type="number" name="phone" pattern="[0-9]{10}" placeholder="Phone Number" required="true"></input><br /> 
 		<br/>
 		<button type="submit" name="signup" value="true">Sign Up</button>
  

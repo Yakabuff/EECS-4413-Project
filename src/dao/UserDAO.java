@@ -14,9 +14,9 @@ import bean.UserBean;
 public class UserDAO {
 	Connection con;
 	public Boolean registerUser(UserBean ab) throws Exception {
-		con = DAOConnect.getConnection();
 		if (!checkUserExists(ab.getEmail())) {
 			try {
+				con = DAOConnect.getConnection();
 				String new_address_query = "INSERT INTO Address (street, province, country, zip, phone, city) VALUES (?, ?, ?, ?, ?, ?)";
 				PreparedStatement addAddress = con.prepareStatement(new_address_query);
 				addAddress.setString(1,ab.getAddressBean().getStreet());
@@ -51,12 +51,12 @@ public class UserDAO {
 			catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				con.close();
 			}
 		}
 		else {
 			throw new Exception("Cannot register, user already exists.");
 		}
-		con.close();
 		return false;
 		
 	}
