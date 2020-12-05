@@ -41,6 +41,11 @@ body{
 <form action="${pageContext.request.contextPath}/UserHandler" method="POST">
     <button type = "submit" name = "logout" value = "true" class="btn btn-primary"> Log Out </button>
 </form>
+<c:choose>
+<c:when test="${sessionScope['adm'] eq 1}">
+<BUTTON class="btn btn-primary"> Analytics </BUTTON>
+</c:when>
+</c:choose>
 <form action="${pageContext.request.contextPath}/Profile.jspx">
     <input type="submit" value="Profile" class="btn btn-primary"/>
 </form>
