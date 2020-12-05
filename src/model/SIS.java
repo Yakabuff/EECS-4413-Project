@@ -91,5 +91,9 @@ public class SIS {
 	public List<OrdersBean> getOrdersByBid (String bid){
 		return po.getPurchaseOrderByBid(bid);
 	}
+	
+	public List<String[]> getMonthlyStats(int month) throws Exception {
+		return po.getMonthlyStatsByPO(month);
+	}
 
 }

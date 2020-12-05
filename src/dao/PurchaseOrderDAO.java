@@ -97,4 +97,33 @@ public class PurchaseOrderDAO {
 		}
 		return quantity;
 	}
+	
+	public List<String[]> getMonthlyStatsByPO(int month) throws Exception {
+		con = DAOConnect.getConnection();
+		String query = "SELECT EXTRACT(MONTH FROM CREATED_AT) as month, COUNT(*) as Total_Sold"
+				+ "FROM PO JOIN POITEM ON POITEM.ID = PO.ID "
+				+ "WHERE STATUS = 'PROCESSED' AND EXTRACT(MONTH FROM CREATED_AT) = ?"
+				+ "GROUP BY EXTRACT(MONTH FROM CREATED_AT);";
+		PreparedStatement p;
+		List<String[] >result = null;
+		try {
+			p = con.prepareStatement(query);
+			p.setInt(1, month);
+			ResultSet r = p.executeQuery();
+			result = new ArrayList<String[]>();
+			if (r.next()) {
+				int reportMonth = r.getInt("month");
+				int tSold = r.getInt("Total_Sold");
+				String[] temp = {Integer.toString(reportMonth), Integer.toString(tSold)};
+				result.add(temp);
+			}
+            r.close();
+            p.close();
+            con.close();
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }
+
+        return result;
+    }
 }
