@@ -28,7 +28,7 @@ public class AnalyticsListener implements ServletContextAttributeListener {
      * Default constructor. 
      */
     public AnalyticsListener() {
-     
+    	System.out.println("Listener is instantiated");
     	topBooks = new ArrayList();
     	try {
 			model = SIS.getInstance();
@@ -48,6 +48,7 @@ public class AnalyticsListener implements ServletContextAttributeListener {
 
     public void attributeRemoved(ServletContextAttributeEvent arg0)  { 
          // TODO Auto-generated method stub
+    	attributeReplaced(arg0);
     }
 
 
@@ -55,7 +56,7 @@ public class AnalyticsListener implements ServletContextAttributeListener {
          // TODO Auto-generated method stub
     	
     	if(arg0.getName().equals("JUST_PURCHASED")) {
-    		
+    		System.out.println();
     		List<CartBookBean> cart = (List<CartBookBean>) arg0.getValue();
     		
     		//write top books to db if not exist

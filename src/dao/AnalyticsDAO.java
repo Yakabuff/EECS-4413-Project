@@ -61,12 +61,14 @@ public class AnalyticsDAO {
 	
 	public List<String> getTopBooks(){
 		Statement stmt;
+		con = DAOConnect.getConnection();
 		List<String>top_books = new ArrayList();
 		try {
 			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT bid FROM TOP_BOOKS ORDER BY TOTAL LIMIT 10");
-			if(rs.next()) {
+			ResultSet rs = stmt.executeQuery("SELECT bid FROM TOP_BOOKS ORDER BY TOTAL DESC LIMIT 10");
+			while(rs.next()) {
 				top_books.add(rs.getString("bid"));
+				System.out.println(rs.getString("bid"));
 			}
 		}catch (SQLException e) {
 			
@@ -76,6 +78,7 @@ public class AnalyticsDAO {
 	
 	public void addNewBook(String bid) {
 		String stmt = "INSERT INTO TOP_BOOKS(bid, total) VALUES (?, 1)";
+		con = DAOConnect.getConnection();
 		PreparedStatement p;
 		try {
 			p = con.prepareStatement(stmt);
@@ -93,7 +96,7 @@ public class AnalyticsDAO {
 	
 	public void incrementABook(String title) {
 		String stmt = "UPDATE TOP_BOOKS SET total = total + 1 WHERE bid = ?";
-		
+		con = DAOConnect.getConnection();
 		PreparedStatement p;
 		try {
 			p = con.prepareStatement(stmt);
@@ -110,7 +113,7 @@ public class AnalyticsDAO {
 	
 	public boolean bookExists(String title) {
 		String stmt = "SELECT bid FROM TOP_BOOKS WHERE bid LIKE ?";
-		
+		con = DAOConnect.getConnection();
 		Boolean status = false;
 		PreparedStatement p;
 		try {

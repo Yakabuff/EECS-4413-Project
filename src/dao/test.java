@@ -38,7 +38,7 @@ public class test {
 
 //		pod.getRow(4);
 //		List<OrdersBean> orders = pod.getPurchaseOrderByBid("b001");
-		Map<String, Integer> a = ad.getPurchasesForAllMonths();
+		List<String> a = ad.getTopBooks();
 
 	}
 }

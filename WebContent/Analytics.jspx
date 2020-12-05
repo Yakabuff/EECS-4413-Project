@@ -10,6 +10,7 @@
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 table, th, td {
   border: 1px solid black;
@@ -41,26 +42,8 @@ table, th, td {
 </c:choose>
 
 <h1>Top 10 books</h1>
-<script>
-function get_fb_complete(){
-    $('#top_10').append('<li>get_fb() ran</li>');
-    var feedback = $.ajax({
-        type: "POST",
-        url: "/Analytics",
-        async: true,
-        dataType:"json"
-    }).complete(function(){
-        setTimeout(function(){get_fb_complete();}, 100);
-    }).responseText;
 
-    $('div.feedback-box-complete').html('complete feedback');
-}
 
-$(function(){
-    get_top_10();
-});
-</script>
-<ol id="top_10"></ol>
 
 </body>
 </html>

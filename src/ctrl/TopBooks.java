@@ -1,11 +1,6 @@
 package ctrl;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -14,18 +9,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import bean.UserBean;
+import com.google.gson.Gson;
+
+import listener.AnalyticsListener;
 import model.SIS;
 
 /**
- * Servlet implementation class Analytics
+ * Servlet implementation class TopBooks
  */
-@WebServlet("/Analytics")
-public class Analytics extends HttpServlet {
+@WebServlet("/TopBooks")
+public class TopBooks extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String ANALYTICS = "/Analytics.jspx";
+    
 	SIS model;
 	
 	public void init(ServletConfig config) throws ServletException {
@@ -40,11 +36,11 @@ public class Analytics extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-       
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Analytics() {
+    public TopBooks() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -53,23 +49,15 @@ public class Analytics extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		ServletContext context = getServletContext();
 		model = (SIS) context.getAttribute("model");
-		Map<String, Integer> stats = model.getPurchasesForAllMonths();
-		HttpSession session=request.getSession();
-		UserBean user = (UserBean) session.getAttribute("currentUser");
-		System.out.println(user.getRole());
-		if(user != null && user.getRole().equals("ADMIN")) {
-			System.out.println("Entering analytics page");
-			System.out.println(stats.get("DECEMBER"));
-			request.setAttribute("MONTHS", stats);
-			request.setAttribute("IS_ADMIN", true);
-			request.getRequestDispatcher(ANALYTICS).forward(request, response);
+		if(AnalyticsListener.topBooks!=null) {
+			response.getWriter().append(new Gson().toJson(AnalyticsListener.topBooks));
 		}else {
-			request.setAttribute("IS_ADMIN", false);
-			request.getRequestDispatcher(ANALYTICS).forward(request, response);
+			response.getWriter().append(new Gson().toJson(model.getAnalyticsDAO().getTopBooks()));
 		}
-
+		
 	}
 
 	/**

@@ -66,7 +66,7 @@ public class Payment extends HttpServlet {
 					if (payment_bool) {
 						request.setAttribute("approveMsg", "Payment Processed! Your Order has been submitted.");
 						context.setAttribute("JUST_PURCHASED", session.getAttribute("BOOKS_IN_CART"));
-						session.setAttribute("BOOK_IN_CART", null);
+						session.removeAttribute("BOOKS_IN_CART");
 					}
 					else {
 						request.setAttribute("rejectMsg", "Credit Card Authorization Failed.");
