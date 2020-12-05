@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,8 +60,18 @@ public class AnalyticsDAO {
 	}
 	
 	public List<String> getTopBooks(){
-		String stmt = "SELECT bid FROM TOP_BOOKS ORDER BY TOTAL LIMIT 10";
-		return null;
+		Statement stmt;
+		List<String>top_books = new ArrayList();
+		try {
+			stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT bid FROM TOP_BOOKS ORDER BY TOTAL LIMIT 10");
+			if(rs.next()) {
+				top_books.add(rs.getString("bid"));
+			}
+		}catch (SQLException e) {
+			
+		}
+		return top_books;
 	}
 	
 	public void addNewBook(String bid) {
