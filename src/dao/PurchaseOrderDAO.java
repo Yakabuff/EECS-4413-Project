@@ -64,8 +64,8 @@ public class PurchaseOrderDAO {
 			}
 			
 			
-
-			
+			p.close();
+			r.close();
 			con.close();
 			
 		}catch(Exception e) {
