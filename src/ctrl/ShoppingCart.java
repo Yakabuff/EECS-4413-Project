@@ -71,7 +71,15 @@ public class ShoppingCart extends HttpServlet {
 		}else {
 			session.setAttribute("CART_SIZE", 0);
 		}
-		
+		int total_price = 0;
+		if(session.getAttribute("BOOKS_IN_CART") != null) {
+			for(CartBookBean cbb : cbb_in_cart) {
+				total_price = cbb.getQuantity()*cbb.getBook().getPrice();
+			}
+			session.setAttribute("TOTAL_PRICE", total_price);
+		}else {
+			session.setAttribute("TOTAL_PRICE", total_price);
+		}
 
 		request.getRequestDispatcher(SHOPPING_CART_URL).forward(request, response);
 	}

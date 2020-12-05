@@ -86,7 +86,8 @@ body{
 	</c:choose>
 
 
-
+	<br />
+	<h1 >Price is: $ ${TOTAL_PRICE}</h1>
 
 
 
