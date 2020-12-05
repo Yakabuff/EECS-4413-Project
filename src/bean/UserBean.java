@@ -5,13 +5,14 @@ public class UserBean {
 	private int UID;
 	private AddressBean addrbean;
 	
-	public UserBean(String firstName, String lastName, String email, String password, AddressBean addrbean, int UID) {
+	public UserBean(String firstName, String lastName, String email, String password, AddressBean addrbean, int UID, String role) {
 		this.firstname = firstName;
 		this.lastname = lastName;
 		this.email = email;
 		this.pass = password;
 		this.addrbean = addrbean;
 		this.UID = UID;
+		this.role = role;
 	}
 	
 	public UserBean(String fname, String lname, String email, String password,

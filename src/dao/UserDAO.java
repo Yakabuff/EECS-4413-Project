@@ -76,6 +76,7 @@ public class UserDAO {
 			int uid = r.getInt("id");
 			String fname = r.getString("fname");
 			String lname = r.getString("lname");
+			String role = r.getString("role");
 			int id = r.getInt("daddressid");
 			String addrquery = "select * from address where id = ?";
 			PreparedStatement addrp = con.prepareStatement(addrquery);
@@ -84,7 +85,7 @@ public class UserDAO {
 			while (addr.next()) {
 				address = new AddressBean(addr.getString("street"), addr.getString("province"), addr.getString("country"), addr.getString("zip"), addr.getString("phone"), addr.getString("city"), addr.getInt("id"));
 			}
-			user = new UserBean(fname, lname, email, password, address, uid);
+			user = new UserBean(fname, lname, email, password, address, uid, role);
 		}
 
 		r.close();

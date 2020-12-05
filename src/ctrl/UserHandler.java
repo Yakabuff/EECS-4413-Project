@@ -71,6 +71,7 @@ public class UserHandler extends HttpServlet {
 			if (user != null) {
 				session.setAttribute("currentUser", user);
 				session.setAttribute("loggedIn", "true");
+				//System.out.println(user.getRole());
 				if (request.getParameter("Payment") != null) {
 					target = PAYMENT_URL;
 				}

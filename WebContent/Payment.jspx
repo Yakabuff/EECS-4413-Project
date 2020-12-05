@@ -28,7 +28,7 @@
 </form>
 <c:if test="${empty sessionScope['loggedIn']}">
 <form action="${pageContext.request.contextPath}/UserHandler">
-    <input type="submit" value="Sign In" />
+    <input type="submit" value="Sign In" class="btn btn-primary"/>
 </form>
 </c:if>
 <c:if test="${not empty sessionScope['loggedIn']}">
