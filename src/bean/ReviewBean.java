@@ -3,12 +3,28 @@ package bean;
 public class ReviewBean {
 	private int rating;
 	private String name;
+	private String message;
 	
-	public ReviewBean(int rating, String name) {
+	public ReviewBean(int rating, String name, String message) {
 		this.rating=rating;
 		this.name=name;
+		this.message = message;
 	}
 	
+	/**
+	 * @return the message
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+	/**
+	 * @param message the message to set
+	 */
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	public ReviewBean() {
 		
 	}

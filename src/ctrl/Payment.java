@@ -65,6 +65,8 @@ public class Payment extends HttpServlet {
 					payment_bool = model.processPayment(user,addr, (List<CartBookBean>) session.getAttribute("BOOKS_IN_CART"));
 					if (payment_bool) {
 						request.setAttribute("approveMsg", "Payment Processed! Your Order has been submitted.");
+						context.setAttribute("JUST_PURCHASED", session.getAttribute("BOOKS_IN_CART"));
+						session.setAttribute("BOOK_IN_CART", null);
 					}
 					else {
 						request.setAttribute("rejectMsg", "Credit Card Authorization Failed.");
