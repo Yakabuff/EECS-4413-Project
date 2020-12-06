@@ -2,6 +2,7 @@ package model;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import bean.BookBean;
 import bean.CartBean;
@@ -10,6 +11,7 @@ import bean.OrdersBean;
 import bean.ReviewBean;
 import bean.UserBean;
 import bean.AddressBean;
+import dao.AnalyticsDAO;
 import dao.BookDAO;
 import dao.PaymentDAO;
 import dao.PurchaseOrderDAO;
@@ -23,6 +25,7 @@ public class SIS {
 	private UserDAO ud;
 	private PaymentDAO pd;
 	private PurchaseOrderDAO po;
+	private AnalyticsDAO ad;
 	public SIS() {
 		
 	}
@@ -36,9 +39,14 @@ public class SIS {
 			instance.ud = new UserDAO();
 			instance.pd = new PaymentDAO();
 			instance.po = new PurchaseOrderDAO();
+			instance.ad = new AnalyticsDAO();
 
 		}
 		return instance;
+	}
+	
+	public AnalyticsDAO getAnalyticsDAO(){
+		return this.ad;
 	}
 	
 	
@@ -66,8 +74,8 @@ public class SIS {
 	}
 	
 	
-	public void addReview(String name, String bid, int rating) {
-		rd.addReview(rating, name, bid);
+	public void addReview(String name, String bid, int rating, String message) {
+		rd.addReview(rating, name, bid, message);
 	}
 	
 	public List<ReviewBean> getReview(String bid) {
@@ -90,6 +98,10 @@ public class SIS {
 	
 	public List<OrdersBean> getOrdersByBid (String bid){
 		return po.getPurchaseOrderByBid(bid);
+	}
+	
+	public Map<String, Integer> getPurchasesForAllMonths(){
+		return ad.getPurchasesForAllMonths();
 	}
 
 }

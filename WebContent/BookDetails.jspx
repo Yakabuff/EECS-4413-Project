@@ -79,7 +79,7 @@ body{
 			<TR>
 			<TD><c:out value="${key.name}"/></TD>
 			<TD><c:out value="${key.rating}/5"/></TD>
-
+			<TD><c:out value="${key.message}"/></TD>
 			</TR>
 			</c:forEach>
 	</TABLE>

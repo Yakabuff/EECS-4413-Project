@@ -23,14 +23,18 @@ public class PurchaseOrderDAO {
 		String query = "select B.title, B.bid, B.author, B.price, B.category, P.uid, PI.id, P.address, "
 				+ "A.id, A.city, A.street, A.province, A.phone, A.country, A.zip"
 				+ " from BOOK B, PO P, POItem PI, Address A"
-				+ " where B.bid like ? and P.uid = PI.id ";
+				+ " where B.bid like ? and P.uid = PI.id and P.ADDRESS = A.id";
 		
-				
+		String query2 = "select B.title, B.bid, B.author, B.price, B.category, P.id,  PI.id, P.address, A.id, A.city, A.street, A.province, A.phone, A.country, A.zip " + 
+				"from BOOK B, PO P, POItem PI, Address A " + 
+				"where PI.bid like ? and PI.id = P.id and B.bid like ? and A.id = P.address";
+		
 		List<OrdersBean> orders = new ArrayList();
 		try {
-			PreparedStatement p = con.prepareStatement(query);
+			PreparedStatement p = con.prepareStatement(query2);
 
 			p.setString(1, "%"+bid+"%");
+			p.setString(2, "%"+bid+"%");
 			
 			ResultSet r = p.executeQuery();
 			
@@ -42,9 +46,9 @@ public class PurchaseOrderDAO {
 				String author = r.getString("author");
 				
 				int price = r.getInt("price");
-				int poId = r.getInt("uid");
-				//int quantity = getOrderQuantity(poId);
-				int address = r.getInt("address");
+				
+				
+				
 				String category = r.getString("category");
 				
 				String street = r.getString("street");

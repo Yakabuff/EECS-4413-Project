@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import bean.BookBean;
 import bean.OrdersBean;
@@ -14,6 +15,7 @@ public class test {
 		BookDAO bd = new BookDAO();
 		ReviewDAO rd = new ReviewDAO();
 		PurchaseOrderDAO pod= new PurchaseOrderDAO();
+		AnalyticsDAO ad = new AnalyticsDAO();
 		SIS model = new SIS();
 //		List<BookBean> list = bd.searchByTitle("Little Prince");
 //		
@@ -35,8 +37,8 @@ public class test {
 //		System.out.println(list.get(1).getRating());
 
 //		pod.getRow(4);
-		List<OrdersBean> orders = pod.getPurchaseOrderByBid("b001");
-		
+//		List<OrdersBean> orders = pod.getPurchaseOrderByBid("b001");
+		List<String> a = ad.getTopBooks();
 
 	}
 }
