@@ -1,6 +1,7 @@
 package ctrl;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -21,7 +22,7 @@ import model.SIS;
 @WebServlet("/TopBooks")
 public class TopBooks extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+    String TOP_BOOKS = "TopBooks.jsp";
 	SIS model;
 	
 	public void init(ServletConfig config) throws ServletException {
@@ -52,11 +53,14 @@ public class TopBooks extends HttpServlet {
 		// TODO Auto-generated method stub
 		ServletContext context = getServletContext();
 		model = (SIS) context.getAttribute("model");
-		if(AnalyticsListener.topBooks!=null) {
-			response.getWriter().append(new Gson().toJson(AnalyticsListener.topBooks));
-		}else {
-			response.getWriter().append(new Gson().toJson(model.getAnalyticsDAO().getTopBooks()));
-		}
+//		if(AnalyticsListener.topBooks!=null) {
+//			response.getWriter().append(new Gson().toJson(AnalyticsListener.topBooks));
+//		}else if(AnalyticsListener.topBooks.size()==0){
+//			response.getWriter().append(new Gson().toJson(model.getAnalyticsDAO().getTopBooks()));
+//		}
+		System.out.println(AnalyticsListener.topBooks.isEmpty());
+		request.getRequestDispatcher(TOP_BOOKS).forward(request, response);
+
 		
 	}
 
@@ -65,7 +69,16 @@ public class TopBooks extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+//		response.getWriter().append(new Gson().toJson(model.getAnalyticsDAO().getTopBooks()));
+		ServletContext context = getServletContext();
+		model = (SIS) context.getAttribute("model");
+		  PrintWriter pw = response.getWriter();
+		  if(AnalyticsListener.topBooks.isEmpty()) {
+			  pw.println(new Gson().toJson(model.getAnalyticsDAO().getTopBooks()));
+		  }else {
+			  response.getWriter().append(new Gson().toJson(AnalyticsListener.topBooks));
+		  }
+		  
 	}
 
 }

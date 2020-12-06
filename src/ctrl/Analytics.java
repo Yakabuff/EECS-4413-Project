@@ -58,14 +58,15 @@ public class Analytics extends HttpServlet {
 		Map<String, Integer> stats = model.getPurchasesForAllMonths();
 		HttpSession session=request.getSession();
 		UserBean user = (UserBean) session.getAttribute("currentUser");
-		System.out.println(user.getRole());
+		
 		if(user != null && user.getRole().equals("ADMIN")) {
 			System.out.println("Entering analytics page");
+			System.out.println(user.getRole());
 			System.out.println(stats.get("DECEMBER"));
 			request.setAttribute("MONTHS", stats);
 			request.setAttribute("IS_ADMIN", true);
 			request.getRequestDispatcher(ANALYTICS).forward(request, response);
-		}else {
+		}else if(user == null || !user.getRole().equals("ADMIN")){
 			request.setAttribute("IS_ADMIN", false);
 			request.getRequestDispatcher(ANALYTICS).forward(request, response);
 		}

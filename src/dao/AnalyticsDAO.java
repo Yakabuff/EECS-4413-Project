@@ -70,6 +70,8 @@ public class AnalyticsDAO {
 				top_books.add(rs.getString("bid"));
 				System.out.println(rs.getString("bid"));
 			}
+			con.close();
+			rs.close();
 		}catch (SQLException e) {
 			
 		}
@@ -82,7 +84,7 @@ public class AnalyticsDAO {
 		PreparedStatement p;
 		try {
 			p = con.prepareStatement(stmt);
-			p.setString(1, "%"+bid+"%");
+			p.setString(1, bid);
 			p.executeUpdate();
 		
 			p.close();
