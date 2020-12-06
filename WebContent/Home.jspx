@@ -44,6 +44,17 @@ body{
 <form action="${pageContext.request.contextPath}/Profile.jspx">
     <input type="submit" value="Profile" class="btn btn-primary"/>
 </form>
+
+<c:if test="${not empty sessionScope['isAdmin']}">
+<form action="${pageContext.request.contextPath}/Analytics">
+    <input type="submit" value="Analytics" class="btn btn-primary"/>
+</form>
+<form action="${pageContext.request.contextPath}/TopBooks">
+    <input type="submit" value="Top Books (Listener)" class="btn btn-primary"/>
+</form>
+</c:if>
+
+
 </c:if>
 
 <div class="jumbotron">
