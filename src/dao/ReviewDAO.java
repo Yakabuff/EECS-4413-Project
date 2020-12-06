@@ -17,14 +17,15 @@ public class ReviewDAO {
 		
 	}
 	
-	public void addReview(int rating, String name, String bid) {
+	public void addReview(int rating, String name, String bid, String message) {
 		con = DAOConnect.getConnection();
-		String query = "INSERT INTO Rating(rating,name,bid) VALUES (?,?,?)";
+		String query = "INSERT INTO Rating(rating,name,bid, message) VALUES (?,?,?,?)";
 		try {
 			PreparedStatement p = con.prepareStatement(query);
 			p.setInt(1, rating);
 			p.setString(2, name);
 			p.setString(3, bid);
+			p.setString(4, message);
 			
 			System.out.println(p.executeUpdate());
 			con.close();
@@ -49,8 +50,10 @@ public class ReviewDAO {
 				ReviewBean rb = new ReviewBean();
 				int rating= rs.getInt("rating");
 				String name= rs.getString("name");
+				String message = rs.getString("message");
 				rb.setName(name);
 				rb.setRating(rating);
+				rb.setMessage(message);
 				reviews.add(rb);
 			}
 			

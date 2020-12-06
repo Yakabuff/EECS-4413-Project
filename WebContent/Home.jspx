@@ -43,7 +43,9 @@ body{
 </form>
 <c:choose>
 <c:when test="${sessionScope['adm'] eq 1}">
-<BUTTON class="btn btn-primary"> Analytics </BUTTON>
+<form action="${pageContext.request.contextPath}/Analytics" method="GET">
+<BUTTON type="submit" name="analytics" value="true" class="btn btn-primary"> Analytics </BUTTON>
+</form>
 </c:when>
 </c:choose>
 <form action="${pageContext.request.contextPath}/Profile.jspx">

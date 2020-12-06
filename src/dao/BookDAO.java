@@ -42,12 +42,15 @@ public class BookDAO {
 				books.add(bean);
 				System.out.println("\t" + bid+ ",\t" + bookTitle+ "\t " + price + "\t "  + category );
 			}//end while loop
+			rs.close();
+			p.close();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		
+
 		return books;
 		
 	}
@@ -70,6 +73,9 @@ public class BookDAO {
 				BookBean bean = new BookBean(bid, bookTitle, author, price, category);
 				books.add(bean);
 			}//end while loop
+			rs.close();
+	
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,6 +112,9 @@ public class BookDAO {
 			System.out.println("\t" + bid+ ",\t" + bookTitle+ "\t " + price + "\t "  + category );
 			
 			}//end while loop
+			
+			rs.close();
+			p.close();
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -145,6 +154,9 @@ public class BookDAO {
 			
 			}//end while loop
 			con.close();
+			rs.close();
+			p.close();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

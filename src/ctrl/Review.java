@@ -56,8 +56,9 @@ public class Review extends HttpServlet {
 
 		String name = request.getParameter("reviewer");
 		String rating = request.getParameter("rating"); 
+		String message = request.getParameter("message");
 		if(request.getParameter("submit_review") != null) {
-			model.addReview(name, bid, Integer.parseInt(rating));
+			model.addReview(name, bid, Integer.parseInt(rating),message);
 			
 		}
 		

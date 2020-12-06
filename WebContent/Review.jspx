@@ -35,6 +35,10 @@ body{
 <input id = "rating" type = "number" min="1" max="5" name = "rating"/><br/>
 <label for='reviewer'>Enter name</label><br/>
 <input id = "reviewer" type = "text"  name = "reviewer"/><br/>
+
+<label for='message'>Enter message</label><br/>
+<input id = "message" type = "text"  name = "message"/><br/>
+
 <button type = "submit" name = "submit_review" value = "${param.review}" class="btn btn-primary"> Submit </button>
 
 </FIELDSET>
