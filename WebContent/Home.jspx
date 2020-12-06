@@ -28,10 +28,6 @@ body{
 </head>
 <body>
 
-
-
-
-<FORM action="ShoppingCart" method = "POST"><button type = "submit" name = "shoppingcart" class="btn btn-primary"> Shopping Cart </button></FORM>
 <c:if test="${empty sessionScope['loggedIn']}">
 <form action="${pageContext.request.contextPath}/UserHandler">
     <input type="submit" value="Sign In" class="btn btn-primary"/>
@@ -56,7 +52,8 @@ body{
 
 
 </c:if>
-
+<c:if test="${empty sessionScope['isAdmin']}">
+<FORM action="ShoppingCart" method = "POST"><button type = "submit" name = "shoppingcart" class="btn btn-primary"> Shopping Cart </button></FORM>
 <div class="jumbotron">
   <h1 class="display-4">Book Store</h1>
   <p class="lead">Search for a category or title below</p>
@@ -105,7 +102,7 @@ body{
 	</TABLE>
 	</c:when>
 	</c:choose>
-
+</c:if>
 </body>
 </html>
 </jsp:root>

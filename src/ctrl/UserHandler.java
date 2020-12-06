@@ -120,6 +120,7 @@ public class UserHandler extends HttpServlet {
 			System.out.println("Log Out Request Recieved");
 			session.setAttribute("currentUser", null);
 			session.setAttribute("loggedIn", null);
+			session.setAttribute("isAdmin", null);
 			target = HOME_URL;
 		}
 		request.getRequestDispatcher(target).forward(request, response);
